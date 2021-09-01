@@ -1,5 +1,5 @@
 name: CGInvisibleItemFrame
-version: ${project.version}
+version: 1.1.0
 main: cg.creamgod45.CGInvisibleItemFrame
 api-version: 1.17
 prefix: CGInvisibleItemFrame
