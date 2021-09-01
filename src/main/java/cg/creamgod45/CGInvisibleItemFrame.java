@@ -37,7 +37,7 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
         if (Bukkit.getPluginManager().getPlugin("PlotSquared") != null) {
             plotsquared = true;
             Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.on_dectect_plotsquared_done);
-            Bukkit.getServer().getConsoleSender().sendMessage(NMS.format(ConfigReader.Prefix + "&2&lPlotSquared Version&r&2:[" + PlotSquared.get().getVersion().versionString()+"]"));
+            Bukkit.getServer().getConsoleSender().sendMessage(NMS.format(ConfigReader.Prefix + "&2PlotSquared Version&r&2:[" + PlotSquared.get().getVersion().versionString()+"]"));
         }
     }
 

@@ -36,7 +36,7 @@ public class ItemFrameListener implements Listener {
     @EventHandler(priority=EventPriority.HIGH)
     public void onClick(PlayerInteractEntityEvent event) {
         Player player = event.getPlayer();
-        if(ConfigReader.disable_worlds.isEmpty()){
+        if(!ConfigReader.disable_worlds.isEmpty()){
             List<String> disable_worlds = ConfigReader.disable_worlds;
             for(String w : disable_worlds) if(player.getWorld().getName().equals(w)) return;
         }

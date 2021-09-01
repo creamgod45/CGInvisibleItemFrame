@@ -2,13 +2,13 @@ Setting:
   # English:
   # This is the prefix when displaying plug-in messages
   # 繁體中文(Traditional Chinese):
-  # 這是顯示外掛程式訊息時的前綴
+  # 這是顯示插件訊息時的前綴
   prefix: "&5&lCGInvisibleItemFrame》 "
   # English:
-  # If set to true, the Message will become the message displayed by the plugin
+  # If set to true, the Messages will become the message displayed by the plugin
   # If set to false, the default is Traditional Chinese message
   # 繁體中文(Traditional Chinese):
-  # 如果設置為 true，則 Messages 將成為外掛程式顯示的訊息
+  # 如果設置為 true，則 Messages 將成為插件顯示的訊息
   # 如果設置為 false，默認為繁體中文訊息
   using_custom_message: true
   # English:
@@ -27,7 +27,7 @@ Setting:
   # the PlotSquared map will not be protected by this plugin!!
   # 繁體中文(Traditional Chinese):
   # 如果設置這個 世界(worlds)，這些 世界(worlds) 將會管理物品展示框的控制
-  # 如果 PlotSquared_Worlds 未設定相關的 PlotSquared 的地圖，則 PlotSquared 的地圖將不受此外掛程式的保護!!
+  # 如果 PlotSquared_Worlds 未設定相關的 PlotSquared 的地圖，則 PlotSquared 的地圖將不受此插件的保護!!
   PlotSquared_Worlds:
     - 'plotworld'
     - 'plotsquared'
@@ -58,7 +58,7 @@ Messages:
   # * This plugin does not support Placeholder API *
   # *player_name* Is a placeholder
   # 繁體中文(Traditional Chinese):
-  # * 本外掛程式並未支援 Placeholder API *
+  # * 本插件並未支援 Placeholder API *
   # *player_name* 是一個佔位符
   on_load: "&2Copy config.yml to the plugin folder."
   on_enable: "&2CGInvisibleItemFrame started successfully."
