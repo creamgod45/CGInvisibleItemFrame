@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.khelekore:prtree:1.7.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/khelekore/prtree/1.7.0-SNAPSHOT/prtree-1.7.0-20200525.121410-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/khelekore/prtree/1.7.0-SNAPSHOT/prtree-1.7.0-20200525.121410-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/khelekore/prtree/1.7.0-SNAPSHOT/prtree-1.7.0-20200525.121410-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

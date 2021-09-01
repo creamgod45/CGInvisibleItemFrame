@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.intellectualsites.http:HTTP4J:1.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/http/HTTP4J/1.1-SNAPSHOT/HTTP4J-1.1-20200716.001714-4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/http/HTTP4J/1.1-SNAPSHOT/HTTP4J-1.1-20200716.001714-4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/http/HTTP4J/1.1-SNAPSHOT/HTTP4J-1.1-20200716.001714-4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

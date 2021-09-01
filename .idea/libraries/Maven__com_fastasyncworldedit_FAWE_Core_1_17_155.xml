@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.fastasyncworldedit:FAWE-Core:1.17-155">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/fastasyncworldedit/FAWE-Core/1.17-155/FAWE-Core-1.17-155.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/fastasyncworldedit/FAWE-Core/1.17-155/FAWE-Core-1.17-155-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/fastasyncworldedit/FAWE-Core/1.17-155/FAWE-Core-1.17-155-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,78 @@
+Setting:
+  # English:
+  # This is the prefix when displaying plug-in messages
+  # 繁體中文(Traditional Chinese):
+  # 這是顯示外掛程式訊息時的前綴
+  prefix: "&5&lCGInvisibleItemFrame》 "
+  # English:
+  # If set to true, the Message will become the message displayed by the plugin
+  # If set to false, the default is Traditional Chinese message
+  # 繁體中文(Traditional Chinese):
+  # 如果設置為 true，則 Messages 將成為外掛程式顯示的訊息
+  # 如果設置為 false，默認為繁體中文訊息
+  using_custom_message: true
+  # English:
+  # If this set true, the permission "cginvisibleitemframe.debugConsole" will be enable for op
+  # 繁體中文(Traditional Chinese):
+  # 如果此設置為 true，則將為 op 啟用預設 "cginvisibleitemframe.debugConsole" 權限
+  debugConsole_msg_default_op: false
+  # English:
+  # If this set true, the permission "cginvisibleitemframe.debugPlayer" will be enable for op
+  # 繁體中文(Traditional Chinese):
+  # 如果此設置為 true，則將為 op 啟用預設 "cginvisibleitemframe.debugPlayer" 權限
+  debugPlayer_msg_default_op: true
+  # English:
+  # If you set this worlds, these worlds will manage the control of the item frame
+  # If PlotSquared_Worlds does not set the relevant PlotSquared map,
+  # the PlotSquared map will not be protected by this plugin!!
+  # 繁體中文(Traditional Chinese):
+  # 如果設置這個 世界(worlds)，這些 世界(worlds) 將會管理物品展示框的控制
+  # 如果 PlotSquared_Worlds 未設定相關的 PlotSquared 的地圖，則 PlotSquared 的地圖將不受此外掛程式的保護!!
+  PlotSquared_Worlds:
+    - 'plotworld'
+    - 'plotsquared'
+  # English:
+  # If this setting is true, the fast player access (fast_deny_player_use_worlds) below will be enabled
+  # This is just for the convenience of setting,
+  # it is recommended that you still use the permission system to set permissions in different worlds,
+  # otherwise it will cause irreversible errors
+  # 繁體中文(Traditional Chinese):
+  # 如果此設置為 true，下方的 快速玩家使用權限 (fast_deny_player_use_worlds) 才會啟用
+  # 這只是為了方便設定，建議您還是使用權限系統分世界設定權限，否則造成不可逆的錯誤
+  fast_deny_player_use: false
+  # English:
+  # Quickly cancel the player's use permission ("cginvisibleitemframe.use") in the fast_deny_player_use_worlds,
+  # you can exempt the permission setting!!
+  # 繁體中文(Traditional Chinese):
+  # 快速取消玩家使用權限("cginvisibleitemframe.use")的世界，可以免除權限設定!!
+  fast_deny_player_use_worlds:
+    - 'Someone'
+  # English:
+  # If you set this worlds, these worlds will be disable control item frame
+  # 繁體中文(Traditional Chinese):
+  # 如果設置這個 世界(worlds)，這些 世界(worlds) 將會禁用控制物品展示框
+  disable_worlds:
+    - "Disable World Name"
+Messages:
+  # English:
+  # * This plugin does not support Placeholder API *
+  # *player_name* Is a placeholder
+  # 繁體中文(Traditional Chinese):
+  # * 本外掛程式並未支援 Placeholder API *
+  # *player_name* 是一個佔位符
+  on_load: "&2Copy config.yml to the plugin folder."
+  on_enable: "&2CGInvisibleItemFrame started successfully."
+  on_disable: "&4CGInvisibleItemFrame closed successfully."
+  on_dectect_plotsquared: "&eDetect PlotSquared Service..."
+  on_dectect_plotsquared_done: "&eDetect PlotSquared Service...&aDone"
+  no_permission: "&cNo permission to use this operation!!"
+  plotsquared_worlds_noset_warning: "If PlotSquared_Worlds does not set the relevant PlotSquared map, the PlotSquared map will not be protected by this plugin!!"
+  debug_player_plot_isowner: "&2You are the landlord of this place"
+  debug_player_plot_istrust: "&2You are a trusted partner in this place"
+  debug_player_plot_no: "&cYou are not the landlord or trusted partner of this place"
+  debug_player_plot_inRoad: "&cYou are standing on the road so you cannot change the status of the ItemFrame"
+  debug_check_plot_permission: "&ePlayer *player_name* does not have cginvisibleitemframe.use permission!!"
+  debug_check_plot_inRoad: "&ePlayer *player_name* is stay on the road, So can't change everything!!"
+  debug_check_plot_isowner: "&ePlayer *player_name* is the landlord of this place"
+  debug_check_plot_istrust: "&ePlayer *player_name* is a trusted partner of this place"
+  debug_check_plot_no: "&ePlayer *player_name* not a landlord or trusted partner of this place"

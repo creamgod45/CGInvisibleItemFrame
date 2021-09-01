@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.intellectualsites.paster:Paster:1.0.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/paster/Paster/1.0.2-SNAPSHOT/Paster-1.0.2-20201228.121255-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/paster/Paster/1.0.2-SNAPSHOT/Paster-1.0.2-20201228.121255-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/paster/Paster/1.0.2-SNAPSHOT/Paster-1.0.2-20201228.121255-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

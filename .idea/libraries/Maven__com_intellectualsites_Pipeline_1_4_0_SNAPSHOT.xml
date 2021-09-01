@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.intellectualsites:Pipeline:1.4.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/Pipeline/1.4.0-SNAPSHOT/Pipeline-1.4.0-20200726.030821-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/Pipeline/1.4.0-SNAPSHOT/Pipeline-1.4.0-20200726.030821-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/intellectualsites/Pipeline/1.4.0-SNAPSHOT/Pipeline-1.4.0-20200726.030821-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
