@@ -1,5 +1,10 @@
 Setting:
   # English:
+  # Do not touch this value, otherwise it will cause plugin errors
+  # 繁體中文(Traditional Chinese):
+  # 不要碰這個數值，否則會造成插件錯誤
+  version: "120"
+  # English:
   # This is the prefix when displaying plug-in messages
   # 繁體中文(Traditional Chinese):
   # 這是顯示插件訊息時的前綴
@@ -63,8 +68,10 @@ Messages:
   on_load: "&2Copy config.yml to the plugin folder."
   on_enable: "&2CGInvisibleItemFrame started successfully."
   on_disable: "&4CGInvisibleItemFrame closed successfully."
+  on_dectect_conflict: "&4Warning that this plugin InvisibleItemFrame conflicts with each other!!&cRecommend to remove"
   on_dectect_plotsquared: "&eDetect PlotSquared Service..."
   on_dectect_plotsquared_done: "&eDetect PlotSquared Service...&aDone"
+  on_dectect_plotsquared_noinstall: "&eDetect PlotSquared Service...&eNo install"
   no_permission: "&cNo permission to use this operation!!"
   plotsquared_worlds_noset_warning: "If PlotSquared_Worlds does not set the relevant PlotSquared map, the PlotSquared map will not be protected by this plugin!!"
   debug_player_plot_isowner: "&2You are the landlord of this place"
@@ -76,3 +83,8 @@ Messages:
   debug_check_plot_isowner: "&ePlayer *player_name* is the landlord of this place"
   debug_check_plot_istrust: "&ePlayer *player_name* is a trusted partner of this place"
   debug_check_plot_no: "&ePlayer *player_name* not a landlord or trusted partner of this place"
+  file_configbak_exists: "&eFound that the config_bak.yml file exists in the plug-in file, please delete the file system will update config.yml"
+  file_configbak_created: "&aFile config_bak.yml Created"
+  file_configbak_copyed: "&eFile config.yml already backup to the config_bak.yml"
+  file_config_deleted: "&cFile config.yml Deleted"
+  file_io_error: "&4File IO error"

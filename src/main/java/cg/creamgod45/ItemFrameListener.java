@@ -94,7 +94,7 @@ public class ItemFrameListener implements Listener {
         if(ConfigReader.fast_deny_player_use && !ConfigReader.fast_deny_player_use_worlds.isEmpty() && !player.isOp()){
             for(String w:ConfigReader.fast_deny_player_use_worlds){
                 if(!player.getWorld().getName().equals(w)){
-                    if (!isInPlotWorld && HasPermission(player, "cginvisibleitemframe.use")) {
+                    if (HasPermission(player, "cginvisibleitemframe.use")) {
                         item_frame(event);
                     } else {
                         if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
@@ -112,7 +112,7 @@ public class ItemFrameListener implements Listener {
                 }
             }
         }else{
-            if (!isInPlotWorld && HasPermission(player, "cginvisibleitemframe.use")) {
+            if (HasPermission(player, "cginvisibleitemframe.use")) {
                 item_frame(event);
             } else {
                 if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
@@ -138,6 +138,7 @@ public class ItemFrameListener implements Listener {
         if (event.isCancelled()) return;
         if (event.getHand() != EquipmentSlot.HAND) return;
         if (!(event.getRightClicked() instanceof ItemFrame)) return;
+        Player player = event.getPlayer();
 
         ItemFrame entity = (ItemFrame)event.getRightClicked();
         Block facing = entity.getLocation().getBlock().getRelative(entity.getAttachedFace());
