@@ -3,7 +3,7 @@ Setting:
   # Do not touch this value, otherwise it will cause plugin errors
   # 繁體中文(Traditional Chinese):
   # 不要碰這個數值，否則會造成插件錯誤
-  version: "120"
+  version: "121"
   # English:
   # This is the prefix when displaying plug-in messages
   # 繁體中文(Traditional Chinese):

@@ -15,7 +15,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.enginehub.piston.config.Config;
 import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
@@ -32,6 +31,10 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
     public static Boolean plotsquared = false;
     public static FileConfiguration fileconfig;
     public static ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+
+    public static CGInvisibleItemFrame getInstance() {
+        return THIS;
+    }
 
     @Override
     public void onEnable() {
@@ -56,6 +59,8 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
             console.sendMessage(ConfigReader.on_dectect_conflict);
             this.getPluginLoader().disablePlugin(this);
         }
+
+        new Metrics(CGInvisibleItemFrame.getInstance(), 12701);
     }
 
     @Override

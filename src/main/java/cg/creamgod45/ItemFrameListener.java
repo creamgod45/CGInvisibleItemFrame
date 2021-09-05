@@ -51,7 +51,7 @@ public class ItemFrameListener implements Listener {
 
         if(CGInvisibleItemFrame.plotsquared) {
             if (!PlotSquared_Worlds_Alert && ConfigReader.PlotSquared_Worlds.isEmpty()) {
-                Bukkit.getLogger().info(ConfigReader.plotsquared_worlds_noset_warning);
+                Bukkit.getLogger().info(ConfigReader.plotsquared_worlds_noset_warning); 
                 PlotSquared_Worlds_Alert = true;
             }
             if (!ConfigReader.PlotSquared_Worlds.isEmpty()) {
