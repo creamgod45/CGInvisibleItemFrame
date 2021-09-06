@@ -66,7 +66,7 @@ public class ItemFrameListener implements Listener {
                             isOwner = plot_checkowner(player);
                         }
                     }
-                    if (isInPlotWorld && isInPlotRoad && !player.isOp()) {
+                    if (isInPlotWorld && isInPlotRoad && !(HasPermission(player,"cginvisibleitemframe.admin") || player.isOp())) {
                         if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
                             Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.debug_check_plot_inRoad.replace("*player_name*", player.getName()));
                         }
@@ -74,7 +74,7 @@ public class ItemFrameListener implements Listener {
                         event.setCancelled(true);
                         return;
                     }
-                    if (isInPlotWorld && isInPlotRoad && player.isOp()) {
+                    if (isInPlotWorld && isInPlotRoad && (HasPermission(player,"cginvisibleitemframe.admin") || player.isOp())) {
                         item_frame(event);
                         return;
                     } else if (isInPlotWorld && isOwner && !isInPlotRoad && HasPermission(player, "cginvisibleitemframe.use")) {
@@ -125,6 +125,9 @@ public class ItemFrameListener implements Listener {
 
     public Boolean HasPermission(Player player, String Permission){
         if(Permission == null){Permission = "" ;}
+        if(Permission.equals("cginvisibleitemframe.admin")){
+            return true;
+        }
         if(ConfigReader.debugConsole_msg_default_op &&
            player.isOp() &&
            Permission.equals("cginvisibleitemframe.debugConsole")) return true;

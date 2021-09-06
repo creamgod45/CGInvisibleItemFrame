@@ -1,5 +1,5 @@
 name: CGInvisibleItemFrame
-version: 1.2.1
+version: 1.2.2
 main: cg.creamgod45.CGInvisibleItemFrame
 api-version: 1.17
 prefix: CGInvisibleItemFrame
@@ -17,4 +17,7 @@ permissions:
     default: op
   cginvisibleitemframe.debugConsole:
     description: Permission debugging information in console 控制台中的權限調試信息
+    default: op
+  cginvisibleitemframe.admin:
+    description: Have plugin control permissions 擁有插件控制權限
     default: op
