@@ -10,12 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Map;
 import java.util.Scanner;
 
 public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExecutor {
@@ -49,29 +49,20 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
             if(!ConfigReader.version.equals(jsonObject.get("version").toString())) {
                 console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_nowversion+" : " + ConfigReader.version));
                 console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_newversion+" : "+jsonObject.get("version").toString()));
-                for (int i=0; i<= jsonObject.getJSONArray("update-suggestion").length()-1;i++){
 
-
-                    /*
-                    String str = "";
-                    String version = o.get("version").getAsString();
-
-                    if(ConfigReader.using_custom_message){
-                        str = o.get("custom").toString();
-                    }else{
-                        str = o.get("default").toString();
+                Map<String, Object> map = jsonObject.getJSONObject("update-suggestion").toMap();
+                for (Map.Entry<String, Object> entry : map.entrySet()) {
+                    System.out.println("key:" + entry.getKey() + ",value:" + entry.getValue());
+                    String s1 = entry.getValue().toString();
+                    s1 = s1.replace("{","");
+                    s1 = s1.replace("}","");
+                    String[] string_arr = s1.split(",");
+                    for(String str:string_arr){
+                        System.out.println(str);
                     }
-                    if(str.length() > 30){
-                        String s1a = str.substring(0, (str.length()/2));
-                        String s1b = str.substring((str.length()/2));
-                        console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ s1a));
-                        console.sendMessage(NMS.format("&e"+ s1b));
-                        console.sendMessage("");
-                    }else{
-                        console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ str));
-                    }
-                    */
+
                 }
+
                 this.getLogger().info(NMS.format("&b============[END Update Checker]=============="));
             }else{
                 this.getLogger().info(NMS.format("&b You Are New Version!!"));
