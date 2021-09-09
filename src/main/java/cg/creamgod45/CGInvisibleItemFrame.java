@@ -10,11 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONException;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Map;
 import java.util.Scanner;
 
 public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExecutor {
@@ -33,19 +34,45 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
             String json = "";
             URL url = new URL("https://raw.githubusercontent.com/creamgod45/CGInvisibleItemFrame/main/version.txt");
             Scanner s = new Scanner(url.openStream(),"UTF-8");
+            int k =0;
             while (s.hasNext()){
-                json = json + " " + s.next();
+                if(k==0){
+                    json = json + s.next();
+                }else{
+                    json = json + " " + s.next();
+                }
+                k++;
             }
-            console.sendMessage(json);
 
             JSONObject jsonObject = new JSONObject(json);
-            this.getLogger().info(NMS.format("&b==============[Update Checker]================"));
+            this.getLogger().info(NMS.format("&b==============["+ConfigReader.updatachecker_title+"]================"));
             if(!ConfigReader.version.equals(jsonObject.get("version").toString())) {
-                console.sendMessage(NMS.format("&f[&aNew&f] &eVersion : "+jsonObject.get("version").toString()));
-                for (int i=0; i<= jsonObject.getJSONArray("update-suggestion").length();i++){
-                    console.sendMessage(NMS.format("&f[&aNew&f] &eUpdate suggestion : "+jsonObject.getJSONArray("update-suggestion").get(i).toString()));
+                console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_nowversion+" : " + ConfigReader.version));
+                console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_newversion+" : "+jsonObject.get("version").toString()));
+                for (int i=0; i<= jsonObject.getJSONObject("update-suggestion").length()-1;i++){
+                    Map<String, Object> map = jsonObject.getJSONObject("update-suggestion").toMap();
+                    String str = "";
+                    for (Map.Entry<String, Object> entry : map.entrySet()) {
+                        System.out.println("key:" + entry.getKey() + ",value:" + entry.getValue());
+                    }
+
+                    /*
+                    if(ConfigReader.using_custom_message){
+                        str = jsonObject.getJSONObject("update-suggestion").get("custom").toString();
+                    }else{
+                        str = jsonObject.getJSONObject("update-suggestion").get("default").toString();
+                    }
+                    if(str.length() > 30){
+                        String s1a = str.substring(0, (str.length()/2));
+                        String s1b = str.substring((str.length()/2));
+                        console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ s1a));
+                        console.sendMessage(NMS.format("&e"+ s1b));
+                        console.sendMessage("");
+                    }else{
+                        console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ str));
+                    }*/
                 }
-                this.getLogger().info(NMS.format("&b============[END Update Checker]==============="));
+                this.getLogger().info(NMS.format("&b============[END Update Checker]=============="));
             }else{
                 this.getLogger().info(NMS.format("&b You Are New Version!!"));
             }

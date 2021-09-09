@@ -88,3 +88,8 @@ Messages:
   file_configbak_copyed: "&eFile config.yml already backup to the config_bak.yml"
   file_config_deleted: "&cFile config.yml Deleted"
   file_io_error: "&4File IO error"
+  updatachecker_title: "&bUpdate Checker&r"
+  updatachecker_endtitle: "&bEND Update Checker&r"
+  updatachecker_nowversion: "&f[&cOld&f] &cNow Version"
+  updatachecker_newversion: "&f[&aNew&f] &eNew Version"
+  updatachecker_update_suggestion: "&f[&aNew&f] &eUpdate suggestion"

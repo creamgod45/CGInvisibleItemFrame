@@ -41,6 +41,12 @@ public class ConfigReader extends JavaPlugin {
     public static String file_configbak_copyed            = format(Prefix + "&e檔案 config.yml 已經備份到 config_bak.yml");
     public static String file_config_deleted              = format(Prefix + "&c檔案 config.yml 已刪除");
     public static String file_io_error                    = format(Prefix + "&4檔案 IO 錯誤");
+    public static String updatachecker_title              = format("&b更新檢查&r");
+    public static String updatachecker_endtitle           = format("&b更新檢查完成&r");
+    public static String updatachecker_nowversion         = format("&f[&c舊&f] &c現在版本");
+    public static String updatachecker_newversion         = format("&f[&a新&f] &a最新版本");
+    public static String updatachecker_update_suggestion  = format("&f[&a新&f] &e更新建議");
+    
 
     public static String getstr(String path, Boolean placeholder){
         FileConfiguration _instance = CGInvisibleItemFrame.fileconfig;
@@ -104,7 +110,17 @@ public class ConfigReader extends JavaPlugin {
             case "Messages.file_config_deleted":
                 return file_config_deleted;
             case "Messages.file_io_error":
-                return file_io_error;     
+                return file_io_error;
+            case "Messages.updatachecker_title":
+                return updatachecker_title;
+            case "Messages.updatachecker_endtitle":
+                return updatachecker_endtitle;
+            case "Messages.updatachecker_nowversion":
+                return updatachecker_nowversion;
+            case "Messages.updatachecker_newversion":
+                return updatachecker_newversion;
+            case "Messages.updatachecker_update_suggestion":
+                return updatachecker_update_suggestion;
             default:
                 return path;
         }
@@ -122,29 +138,34 @@ public class ConfigReader extends JavaPlugin {
         disable_worlds = _instance.getStringList("Setting.disable_worlds");
 
         if(using_custom_message){
-            on_load = Prefix + getstr("Messages.on_load", false);
-            on_enable = Prefix + getstr("Messages.on_enable", false);
-            on_disable = Prefix + getstr("Messages.on_disable", false);
-            on_dectect_conflict = Prefix + getstr("Messages.on_dectect_conflict", false);
-            on_dectect_plotsquared = Prefix + getstr("Messages.on_dectect_plotsquared", false);
-            on_dectect_plotsquared_done = Prefix + getstr("Messages.on_dectect_plotsquared_done", false);
+            on_load                          = Prefix + getstr("Messages.on_load", false);
+            on_enable                        = Prefix + getstr("Messages.on_enable", false);
+            on_disable                       = Prefix + getstr("Messages.on_disable", false);
+            on_dectect_conflict              = Prefix + getstr("Messages.on_dectect_conflict", false);
+            on_dectect_plotsquared           = Prefix + getstr("Messages.on_dectect_plotsquared", false);
+            on_dectect_plotsquared_done      = Prefix + getstr("Messages.on_dectect_plotsquared_done", false);
             on_dectect_plotsquared_noinstall = Prefix + getstr("Messages.on_dectect_plotsquared_noinstall", false);
-            no_permission = Prefix + getstr("Messages.no_permission", false);
+            no_permission                    = Prefix + getstr("Messages.no_permission", false);
             plotsquared_worlds_noset_warning = Prefix + getstr("Messages.plotsquared_worlds_noset_warning", false);
-            debug_player_plot_isowner = Prefix + getstr("Messages.debug_player_plot_isowner", false);
-            debug_player_plot_istrust = Prefix + getstr("Messages.debug_player_plot_istrust", false);
-            debug_player_plot_no = Prefix + getstr("Messages.debug_player_plot_no", false);
-            debug_player_plot_inRoad = Prefix + getstr("Messages.debug_player_plot_inRoad", false);
-            debug_check_plot_permission = Prefix + getstr("Messages.debug_check_plot_permission", true);
-            debug_check_plot_inRoad = Prefix + getstr("Messages.debug_check_plot_inRoad", true);
-            debug_check_plot_isowner = Prefix + getstr("Messages.debug_check_plot_isowner", true);
-            debug_check_plot_istrust = Prefix + getstr("Messages.debug_check_plot_istrust", true);
-            debug_check_plot_no = Prefix + getstr("Messages.debug_check_plot_no", true);
-            file_configbak_exists = Prefix + getstr("Messages.file_configbak_exists", false);
-            file_configbak_created = Prefix + getstr("Messages.file_configbak_created", false);
-            file_configbak_copyed = Prefix + getstr("Messages.file_configbak_copyed", false);
-            file_config_deleted = Prefix + getstr("Messages.file_config_deleted", false);
-            file_io_error = Prefix + getstr("Messages.file_io_error", false);
+            debug_player_plot_isowner        = Prefix + getstr("Messages.debug_player_plot_isowner", false);
+            debug_player_plot_istrust        = Prefix + getstr("Messages.debug_player_plot_istrust", false);
+            debug_player_plot_no             = Prefix + getstr("Messages.debug_player_plot_no", false);
+            debug_player_plot_inRoad         = Prefix + getstr("Messages.debug_player_plot_inRoad", false);
+            debug_check_plot_permission      = Prefix + getstr("Messages.debug_check_plot_permission", true);
+            debug_check_plot_inRoad          = Prefix + getstr("Messages.debug_check_plot_inRoad", true);
+            debug_check_plot_isowner         = Prefix + getstr("Messages.debug_check_plot_isowner", true);
+            debug_check_plot_istrust         = Prefix + getstr("Messages.debug_check_plot_istrust", true);
+            debug_check_plot_no              = Prefix + getstr("Messages.debug_check_plot_no", true);
+            file_configbak_exists            = Prefix + getstr("Messages.file_configbak_exists", false);
+            file_configbak_created           = Prefix + getstr("Messages.file_configbak_created", false);
+            file_configbak_copyed            = Prefix + getstr("Messages.file_configbak_copyed", false);
+            file_config_deleted              = Prefix + getstr("Messages.file_config_deleted", false);
+            file_io_error                    = Prefix + getstr("Messages.file_io_error", false);
+            updatachecker_title              = getstr("Messages.updatachecker_title", false);
+            updatachecker_endtitle           = getstr("Messages.updatachecker_endtitle", false);
+            updatachecker_nowversion         = getstr("Messages.updatachecker_nowversion", false);
+            updatachecker_newversion         = getstr("Messages.updatachecker_newversion", false);
+            updatachecker_update_suggestion  = getstr("Messages.updatachecker_update_suggestion", false);
         }
 
     }
