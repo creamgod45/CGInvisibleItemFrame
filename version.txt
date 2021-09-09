@@ -3,7 +3,7 @@
   "update-suggestion": {
     "custom": {
       "111": "[1.1.1] There are multiple errors in this version, please update immediately, otherwise it will cause irreversible consequences.",
-      "122": "[1.2.2] Regarding the permission check code of "cginvisibleitemframe.admin" in this plug-in version, it is found that this permission is false, and the permission system does not check whether the player has permission, but the vulnerability of the judgment formula has been fixed in the latest version."
+      "122": "[1.2.2] Regarding the permission check code of “cginvisibleitemframe.admin” in this plug-in version, it is found that this permission is false, and the permission system does not check whether the player has permission, but the vulnerability of the judgment formula has been fixed in the latest version."
     },
     "default": {
       "111": "[1.1.1] 此版本存在多個錯誤請立即更新，否則會造成不可逆的後果。",

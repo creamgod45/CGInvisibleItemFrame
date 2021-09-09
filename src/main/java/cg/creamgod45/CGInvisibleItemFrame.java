@@ -59,7 +59,15 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
                         int newversion = Integer.parseInt(ver.getKey());
                         int nowversion = Integer.parseInt(ConfigReader.version);
                         if(newversion >= nowversion){
-                            console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ver.getValue().toString()));
+                            String s1 = ver.getValue().toString();
+                            if(s1.length()>=30){
+                                String s1a = s1.substring(0, (s1.length()/2));
+                                String s1b = s1.substring((s1.length()/2));
+                                console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+s1a));
+                                console.sendMessage(NMS.format(s1b));
+                            }else{
+                                console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ver.getValue().toString()));
+                            }
                         }
                     }
                 }else{
@@ -68,7 +76,15 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
                         int newversion = Integer.parseInt(ver.getKey());
                         int nowversion = Integer.parseInt(ConfigReader.version);
                         if(newversion >= nowversion){
-                            console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ver.getValue().toString()));
+                            String s1 = ver.getValue().toString();
+                            if(s1.length()>=30){
+                                String s1a = s1.substring(0, (s1.length()/2));
+                                String s1b = s1.substring((s1.length()/2));
+                                console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+s1a));
+                                console.sendMessage(NMS.format(s1b));
+                            }else{
+                                console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ver.getValue().toString()));
+                            }
                         }
                     }
                 }
