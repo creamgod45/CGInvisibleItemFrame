@@ -1,13 +1,15 @@
 {
   "version": "130",
-  "update-suggestion": {
-    "120": {
+  "update-suggestion": [
+    {
+      "version": "122",
       "default": "[1.2.2] 關於 [1.2.2] 中 “cginvisibleitemframe.admin” 的權限檢查代碼，發現這個權限是虛設，權限系統並不會檢查玩家是否有權限，但是已經修復了判斷公式的漏洞。",
       "custom": "[1.2.2] Regarding the permission of “cginvisibleitemframe.admin” in [1.2.2] checking the code, it was found that this permission was false and it will not check whether the player has permission, but the vulnerability has been fixed after the judgment formula has been repaired."
     },
-    "111": {
+    {
+      "version": "111",
       "default": "[1.1.1] There are multiple errors in this version, please update immediately, otherwise it will cause irreversible consequences.",
       "custom": "[1.1.1] 此版本存在多個錯誤請立即更新，否則會造成不可逆的後果。"
     }
-  }
+  ]
 }

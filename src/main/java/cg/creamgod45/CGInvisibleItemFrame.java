@@ -1,5 +1,6 @@
 package cg.creamgod45;
 
+import com.google.gson.JsonObject;
 import com.plotsquared.core.PlotSquared;
 
 import org.bukkit.Bukkit;
@@ -15,8 +16,9 @@ import org.json.JSONException;
 
 import java.io.*;
 import java.net.URL;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.function.Consumer;
 
 public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExecutor {
     public static JavaPlugin instance;
@@ -50,17 +52,13 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
                 console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_nowversion+" : " + ConfigReader.version));
                 console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_newversion+" : "+jsonObject.get("version").toString()));
                 for (int i=0; i<= jsonObject.getJSONObject("update-suggestion").length()-1;i++){
-                    Map<String, Object> map = jsonObject.getJSONObject("update-suggestion").toMap();
+                    JsonObject o = (JsonObject) jsonObject.getJSONObject("update-suggestion").get(String.valueOf(i));
                     String str = "";
-                    for (Map.Entry<String, Object> entry : map.entrySet()) {
-                        System.out.println("key:" + entry.getKey() + ",value:" + entry.getValue());
-                    }
-
-                    /*
+                    String version = o.get("version").toString();
                     if(ConfigReader.using_custom_message){
-                        str = jsonObject.getJSONObject("update-suggestion").get("custom").toString();
+                        str = o.get("custom").toString();
                     }else{
-                        str = jsonObject.getJSONObject("update-suggestion").get("default").toString();
+                        str = o.get("default").toString();
                     }
                     if(str.length() > 30){
                         String s1a = str.substring(0, (str.length()/2));
@@ -70,7 +68,8 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
                         console.sendMessage("");
                     }else{
                         console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ str));
-                    }*/
+                    }
+                    /**/
                 }
                 this.getLogger().info(NMS.format("&b============[END Update Checker]=============="));
             }else{
