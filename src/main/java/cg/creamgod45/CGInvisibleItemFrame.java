@@ -15,6 +15,9 @@ import org.json.JSONException;
 
 import java.io.*;
 import java.net.URL;
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -45,27 +48,35 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
             }
 
             JSONObject jsonObject = new JSONObject(json);
-            this.getLogger().info(NMS.format("&b==============["+ConfigReader.updatachecker_title+"]================"));
+            console.sendMessage(NMS.format("&b==============["+ConfigReader.updatachecker_title+"]&b================"));
             if(!ConfigReader.version.equals(jsonObject.get("version").toString())) {
                 console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_nowversion+" : " + ConfigReader.version));
                 console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_newversion+" : "+jsonObject.get("version").toString()));
 
-                Map<String, Object> map = jsonObject.getJSONObject("update-suggestion").toMap();
-                for (Map.Entry<String, Object> entry : map.entrySet()) {
-                    System.out.println("key:" + entry.getKey() + ",value:" + entry.getValue());
-                    String s1 = entry.getValue().toString();
-                    s1 = s1.replace("{","");
-                    s1 = s1.replace("}","");
-                    String[] string_arr = s1.split(",");
-                    for(String str:string_arr){
-                        System.out.println(str);
+                if(ConfigReader.using_custom_message){
+                    Map<String, Object> custom = jsonObject.getJSONObject("update-suggestion").getJSONObject("custom").toMap();
+                    for (Map.Entry<String, Object> ver : custom.entrySet()) {
+                        int newversion = Integer.parseInt(ver.getKey());
+                        int nowversion = Integer.parseInt(ConfigReader.version);
+                        if(newversion >= nowversion){
+                            console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ver.getValue().toString()));
+                        }
                     }
-
+                }else{
+                    Map<String, Object> custom = jsonObject.getJSONObject("update-suggestion").getJSONObject("default").toMap();
+                    for (Map.Entry<String, Object> ver : custom.entrySet()) {
+                        int newversion = Integer.parseInt(ver.getKey());
+                        int nowversion = Integer.parseInt(ConfigReader.version);
+                        if(newversion >= nowversion){
+                            console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_update_suggestion+" : "+ver.getValue().toString()));
+                        }
+                    }
                 }
 
-                this.getLogger().info(NMS.format("&b============[END Update Checker]=============="));
+                console.sendMessage(NMS.format("&b============["+ConfigReader.updatachecker_endtitle+"]&b=============="));
             }else{
-                this.getLogger().info(NMS.format("&b You Are New Version!!"));
+                console.sendMessage(NMS.format("&f⇒ "+ConfigReader.updatachecker_done));
+                console.sendMessage(NMS.format("&b============["+ConfigReader.updatachecker_endtitle+"]&b=============="));
             }
             // read from your scanner
         }
@@ -91,8 +102,8 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
         console.sendMessage(ConfigReader.on_dectect_plotsquared);
         if (Bukkit.getPluginManager().getPlugin("PlotSquared") != null) {
             plotsquared = true;
-            console.sendMessage(ConfigReader.on_dectect_plotsquared_done);
-            console.sendMessage(NMS.format(ConfigReader.Prefix + "&2PlotSquared Version&r&2:[" + PlotSquared.get().getVersion().versionString()+"]"));
+            Bukkit.getScheduler().runTaskLater(this,()->console.sendMessage(ConfigReader.on_dectect_plotsquared_done), 20);
+            Bukkit.getScheduler().runTaskLater(this,()->console.sendMessage(NMS.format(ConfigReader.Prefix + "&2PlotSquared Version&r&2:[" + PlotSquared.get().getVersion().versionString()+"]")), 20);
         }else {
             console.sendMessage(ConfigReader.on_dectect_plotsquared_noinstall);
         }
@@ -150,25 +161,49 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
     }
 
     public void update_config () {
-        if(this.getConfig().getString("Setting.version")=="120") return;
-        console.sendMessage(this.getConfig().getString("Setting.version"));
-        File oldconfig = new File("plugins/CGInvisibleItemFrame/config.yml");
-        File newconfig = new File("plugins/CGInvisibleItemFrame/config_bak.yml");
-        try {
-            if(newconfig.exists()) {
-                console.sendMessage(ConfigReader.file_configbak_exists);
-            }
-            if(newconfig.createNewFile()) {
-                console.sendMessage(ConfigReader.file_configbak_created);
-                copy(oldconfig, newconfig);
-                console.sendMessage(ConfigReader.file_configbak_copyed);
+        console.sendMessage("");
+        console.sendMessage("");
+        console.sendMessage("");
+        SimpleDateFormat date = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+        String timeStamp = date.format(new Date());
 
-                if(oldconfig.delete()){
-                    console.sendMessage(ConfigReader.file_config_deleted);
+        File oldconfig = new File("plugins/CGInvisibleItemFrame/config.yml");
+        File backup = new File("plugins/CGInvisibleItemFrame/backups/");
+        File newconfig = new File("plugins/CGInvisibleItemFrame/backups/config_bak_" + timeStamp + ".yml");
+        File lock = new File("plugins/CGInvisibleItemFrame/config.lock");
+        try {
+            if(backup.mkdirs() || backup.exists()){
+                if(ConfigReader.update_config){
+                    copy(oldconfig,newconfig);
+                    console.sendMessage(ConfigReader.file_configbak_copyed + "config_bak_" + timeStamp + ".yml");
+                    if(oldconfig.delete()){
+                        console.sendMessage(ConfigReader.file_config_deleted);
+                        getConfig().options().copyDefaults(true);
+                        saveDefaultConfig();
+                        console.sendMessage(ConfigReader.on_load);
+                    }
+                    if(!lock.exists() && lock.createNewFile()){
+                        console.sendMessage(ConfigReader.file_config_lock);
+
+                    }
+                    return;
+                }else if(lock.exists()){
+                    console.sendMessage(ConfigReader.file_config_locked);
+                }else{
+                    copy(oldconfig,newconfig);
+                    console.sendMessage(ConfigReader.file_configbak_copyed + "config_bak_" + timeStamp + ".yml");
+                    if(oldconfig.delete()){
+                        console.sendMessage(ConfigReader.file_config_deleted);
+                        getConfig().options().copyDefaults(true);
+                        saveDefaultConfig();
+                        console.sendMessage(ConfigReader.on_load);
+                    }
+                    if(lock.createNewFile()){
+                        console.sendMessage(ConfigReader.file_config_lock);
+
+                    }
+                    return;
                 }
-                getConfig().options().copyDefaults(true);
-                saveDefaultConfig();
-                console.sendMessage(ConfigReader.on_load);
             }
         } catch (IOException e) {
             console.sendMessage(ConfigReader.file_io_error);

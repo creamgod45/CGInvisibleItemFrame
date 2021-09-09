@@ -1,9 +1,11 @@
 Setting:
   # English:
-  # Do not touch this value, otherwise it will cause plugin errors
+  # This option is false during the default installation, but it will be enforced if there is no config.lock in the file.
+  # If set to false, the action of updating the configuration file will be executed, and then the file will be saved in /backups
   # 繁體中文(Traditional Chinese):
-  # 不要碰這個數值，否則會造成插件錯誤
-  version: "130"
+  # 默認安裝時此選項為 false，但如果檔案中沒有 config.lock 將會強制執行。
+  # 如果設置為 false，將會執行更新設定檔案的動作，然後將會保存檔案於 /backups/config_bak_{timestamp}.yml
+  update_config: false
   # English:
   # This is the prefix when displaying plug-in messages
   # 繁體中文(Traditional Chinese):
@@ -83,13 +85,14 @@ Messages:
   debug_check_plot_isowner: "&ePlayer *player_name* is the landlord of this place"
   debug_check_plot_istrust: "&ePlayer *player_name* is a trusted partner of this place"
   debug_check_plot_no: "&ePlayer *player_name* not a landlord or trusted partner of this place"
-  file_configbak_exists: "&eFound that the config_bak.yml file exists in the plug-in file, please delete the file system will update config.yml"
-  file_configbak_created: "&aFile config_bak.yml Created"
-  file_configbak_copyed: "&eFile config.yml already backup to the config_bak.yml"
+  file_configbak_copyed: "&eFile config.yml already backup to the /CGInvisibleItemFrame/backups/"
   file_config_deleted: "&cFile config.yml Deleted"
   file_io_error: "&4File IO error"
-  updatachecker_title: "&bUpdate Checker&r"
-  updatachecker_endtitle: "&bEND Update Checker&r"
+  file_config_lock: "&f[&4lock&f]&eConfiguration file config.yml"
+  file_config_locked: "&cThe configuration file config.yml has been locked."
+  updatachecker_title: "&bUpdate Checker"
+  updatachecker_endtitle: "&bEND Update Checker"
   updatachecker_nowversion: "&f[&cOld&f] &cNow Version"
   updatachecker_newversion: "&f[&aNew&f] &eNew Version"
   updatachecker_update_suggestion: "&f[&aNew&f] &eUpdate suggestion"
+  updatachecker_done: "&aYou are already the latest version"

@@ -3,6 +3,7 @@
     <output-path>D:/Minecraft SERVER</output-path>
     <root id="archive" name="CGInvisibleItemFrame.jar">
       <element id="module-output" name="CGInvisibleItemFrame" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20201115/json-20201115.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

@@ -2,13 +2,13 @@ package cg.creamgod45;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
-public class ConfigReader extends JavaPlugin {
+public class ConfigReader {
     // Config
-    public static String version = "120";
+    public static String version = "111";
+    public static Boolean update_config = false;
     public static String Prefix = "&5&l物品展示架輔助》 &r";
     public static Boolean using_custom_message = false;
     public static Boolean debugConsole_msg_default_op = false;
@@ -36,17 +36,18 @@ public class ConfigReader extends JavaPlugin {
     public static String debug_check_plot_isowner         = format(Prefix + "&e玩家 *player_name* 是此地點的地主");
     public static String debug_check_plot_istrust         = format(Prefix + "&e玩家 *player_name* 是此地點的信任夥伴");
     public static String debug_check_plot_no              = format(Prefix + "&e玩家 *player_name* 不是此地點的地主或是信任夥伴");
-    public static String file_configbak_exists            = format(Prefix + "&e發現 config_bak.yml 檔案存在於插件檔案中，請刪除檔案系統才會更新 config.yml");
-    public static String file_configbak_created           = format(Prefix + "&a檔案 config_bak.yml 已建立");
-    public static String file_configbak_copyed            = format(Prefix + "&e檔案 config.yml 已經備份到 config_bak.yml");
+    public static String file_configbak_copyed            = format(Prefix + "&e檔案 config.yml 已經備份到 /CGInvisibleItemFrame/backups/");
     public static String file_config_deleted              = format(Prefix + "&c檔案 config.yml 已刪除");
     public static String file_io_error                    = format(Prefix + "&4檔案 IO 錯誤");
-    public static String updatachecker_title              = format("&b更新檢查&r");
-    public static String updatachecker_endtitle           = format("&b更新檢查完成&r");
-    public static String updatachecker_nowversion         = format("&f[&c舊&f] &c現在版本");
-    public static String updatachecker_newversion         = format("&f[&a新&f] &a最新版本");
-    public static String updatachecker_update_suggestion  = format("&f[&a新&f] &e更新建議");
-    
+    public static String file_config_lock                 = format(Prefix + "&f[&4鎖定&f]&e設定檔案 config.yml");
+    public static String file_config_locked               = format(Prefix + "&c設定檔案 config.yml 已經被鎖定。");
+    public static String updatachecker_title              = format("&b更新檢查");
+    public static String updatachecker_endtitle           = format("&b更新檢查完成");
+    public static String updatachecker_nowversion         = format(Prefix + "&f[&c舊&f] &c現在版本");
+    public static String updatachecker_newversion         = format(Prefix + "&f[&a新&f] &a最新版本");
+    public static String updatachecker_update_suggestion  = format(Prefix + "&f[&a新&f] &e更新建議");
+    public static String updatachecker_done               = format(Prefix + "&a你已經是最新版本");
+
 
     public static String getstr(String path, Boolean placeholder){
         FileConfiguration _instance = CGInvisibleItemFrame.fileconfig;
@@ -101,10 +102,6 @@ public class ConfigReader extends JavaPlugin {
                 return debug_check_plot_istrust;
             case "Messages.debug_check_plot_no":
                 return debug_check_plot_no;
-            case "Messages.file_configbak_exists":
-                return file_configbak_exists;
-            case "Messages.file_configbak_created":
-                return file_configbak_created;
             case "Messages.file_configbak_copyed":
                 return file_configbak_copyed;
             case "Messages.file_config_deleted":
@@ -121,6 +118,12 @@ public class ConfigReader extends JavaPlugin {
                 return updatachecker_newversion;
             case "Messages.updatachecker_update_suggestion":
                 return updatachecker_update_suggestion;
+            case "Messages.updatachecker_done":
+                return updatachecker_done;
+            case "Messages.file_config_lock":
+                return file_config_lock;  
+            case "Messages.file_config_locked":
+                return file_config_locked;  
             default:
                 return path;
         }
@@ -129,6 +132,7 @@ public class ConfigReader extends JavaPlugin {
     public static void load(){
         FileConfiguration _instance = CGInvisibleItemFrame.fileconfig;
         Prefix = getstr("Setting.prefix", false);
+        update_config = _instance.getBoolean("Setting.update_config");
         using_custom_message = _instance.getBoolean("Setting.using_custom_message");
         debugConsole_msg_default_op = _instance.getBoolean("Setting.debugConsole_msg_default_op");
         debugPlayer_msg_default_op = _instance.getBoolean("Setting.debugPlayer_msg_default_op");
@@ -156,16 +160,17 @@ public class ConfigReader extends JavaPlugin {
             debug_check_plot_isowner         = Prefix + getstr("Messages.debug_check_plot_isowner", true);
             debug_check_plot_istrust         = Prefix + getstr("Messages.debug_check_plot_istrust", true);
             debug_check_plot_no              = Prefix + getstr("Messages.debug_check_plot_no", true);
-            file_configbak_exists            = Prefix + getstr("Messages.file_configbak_exists", false);
-            file_configbak_created           = Prefix + getstr("Messages.file_configbak_created", false);
             file_configbak_copyed            = Prefix + getstr("Messages.file_configbak_copyed", false);
             file_config_deleted              = Prefix + getstr("Messages.file_config_deleted", false);
             file_io_error                    = Prefix + getstr("Messages.file_io_error", false);
+            file_config_lock                 = Prefix + getstr("Messages.file_config_lock", false);  
+            file_config_locked               = Prefix + getstr("Messages.file_config_locked", false);
             updatachecker_title              = getstr("Messages.updatachecker_title", false);
             updatachecker_endtitle           = getstr("Messages.updatachecker_endtitle", false);
-            updatachecker_nowversion         = getstr("Messages.updatachecker_nowversion", false);
-            updatachecker_newversion         = getstr("Messages.updatachecker_newversion", false);
-            updatachecker_update_suggestion  = getstr("Messages.updatachecker_update_suggestion", false);
+            updatachecker_nowversion         = Prefix + getstr("Messages.updatachecker_nowversion", false);
+            updatachecker_newversion         = Prefix + getstr("Messages.updatachecker_newversion", false);
+            updatachecker_update_suggestion  = Prefix + getstr("Messages.updatachecker_update_suggestion", false);
+            updatachecker_done               = Prefix + getstr("Messages.updatachecker_done",false);
         }
 
     }
