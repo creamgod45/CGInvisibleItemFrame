@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ConfigReader {
     // Config
-    public static String version = "111";
+    public static String version = "130";
     public static Boolean update_config = false;
     public static String Prefix = "&5&l物品展示架輔助》 &r";
     public static Boolean using_custom_message = false;

@@ -107,7 +107,6 @@ public class ItemFrameListener implements Listener {
                 }
             }
         }
-        CGInvisibleItemFrame.console.sendMessage("end plotsqurard");
 
         if(ConfigReader.fast_deny_player_use && !ConfigReader.fast_deny_player_use_worlds.isEmpty() && !HasPermission(player,"cginvisibleitemframe.admin")){
             for(String w:ConfigReader.fast_deny_player_use_worlds){
