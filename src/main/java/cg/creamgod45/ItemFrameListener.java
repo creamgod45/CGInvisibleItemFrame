@@ -47,13 +47,8 @@ public class ItemFrameListener implements Listener {
         Boolean isInPlotWorld = false;
         Boolean isOwner = false;
         Boolean isInPlotRoad = false;
-        Boolean PlotSquared_Worlds_Alert = false;
 
         if(CGInvisibleItemFrame.plotsquared) {
-            if (!PlotSquared_Worlds_Alert && ConfigReader.PlotSquared_Worlds.isEmpty()) {
-                Bukkit.getLogger().info(ConfigReader.plotsquared_worlds_noset_warning); 
-                PlotSquared_Worlds_Alert = true;
-            }
             if (!ConfigReader.PlotSquared_Worlds.isEmpty()) {
                 List<String> PlotWorlds = ConfigReader.PlotSquared_Worlds;
 
@@ -66,35 +61,58 @@ public class ItemFrameListener implements Listener {
                             isOwner = plot_checkowner(player);
                         }
                     }
-                    if (isInPlotWorld && isInPlotRoad && !(HasPermission(player,"cginvisibleitemframe.admin") || player.isOp())) {
-                        if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
-                            Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.debug_check_plot_inRoad.replace("*player_name*", player.getName()));
+                    // if in plotworld and in plotroad
+                    // and if have "cginvisibleitemframe.admin":
+                    //      you can change everything
+                    // else:
+                    //      you can't change everything
+                    if (isInPlotWorld && isInPlotRoad) {
+                        if(HasPermission(player,"cginvisibleitemframe.admin")){
+                            item_frame(event);
+                            return;
+                        }else{
+                            if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
+                                Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.debug_check_plot_inRoad.replace("*player_name*", player.getName()));
+                            }
+                            player.sendMessage(ConfigReader.debug_player_plot_inRoad);
+                            event.setCancelled(true);
+                            return;
                         }
-                        player.sendMessage(ConfigReader.debug_player_plot_inRoad);
-                        event.setCancelled(true);
-                        return;
                     }
-                    if (isInPlotWorld && isInPlotRoad && (HasPermission(player,"cginvisibleitemframe.admin") || player.isOp())) {
-                        item_frame(event);
-                        return;
-                    } else if (isInPlotWorld && isOwner && !isInPlotRoad && HasPermission(player, "cginvisibleitemframe.use")) {
-                        item_frame(event);
-                        return;
-                    } else {
-                        if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
-                            Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.debug_check_plot_permission.replace("*player_name*", player.getName()));
+                    // if in plotworld and is plot (owner||trust)
+                    // and if have "cginvisibleitemframe.admin":
+                    //      you can change everything
+                    // else:
+                    //
+                    if(isInPlotWorld){
+                        CGInvisibleItemFrame.console.sendMessage("1");
+                        if(HasPermission(player,"cginvisibleitemframe.admin")){
+                            CGInvisibleItemFrame.console.sendMessage("2");
+                            item_frame(event);
+                            return;
+                        }else if(isOwner && HasPermission(player,"cginvisibleitemframe.use")){
+                            CGInvisibleItemFrame.console.sendMessage("3");
+                            item_frame(event);
+                            return;
+                        }else{
+                            CGInvisibleItemFrame.console.sendMessage("4");
+                            if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
+                                Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.debug_check_plot_inRoad.replace("*player_name*", player.getName()));
+                            }
+                            player.sendMessage(ConfigReader.debug_player_plot_inRoad);
+                            event.setCancelled(true);
+                            return;
                         }
-                        event.getPlayer().sendMessage(ConfigReader.no_permission);
-                        return;
                     }
                 }
             }
         }
+        CGInvisibleItemFrame.console.sendMessage("end plotsqurard");
 
-        if(ConfigReader.fast_deny_player_use && !ConfigReader.fast_deny_player_use_worlds.isEmpty() && !player.isOp()){
+        if(ConfigReader.fast_deny_player_use && !ConfigReader.fast_deny_player_use_worlds.isEmpty() && !HasPermission(player,"cginvisibleitemframe.admin")){
             for(String w:ConfigReader.fast_deny_player_use_worlds){
                 if(!player.getWorld().getName().equals(w)){
-                    if (HasPermission(player, "cginvisibleitemframe.use")) {
+                    if (HasPermission(player, "cginvisibleitemframe.use") || HasPermission(player,"cginvisibleitemframe.admin")) {
                         item_frame(event);
                     } else {
                         if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
@@ -111,21 +129,24 @@ public class ItemFrameListener implements Listener {
                     continue;
                 }
             }
+            return;
         }else{
-            if (HasPermission(player, "cginvisibleitemframe.use")) {
+            if (HasPermission(player, "cginvisibleitemframe.use") || HasPermission(player,"cginvisibleitemframe.admin")) {
                 item_frame(event);
             } else {
                 if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
                     Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.debug_check_plot_permission.replace("*player_name*", player.getName()));
                 }
                 event.getPlayer().sendMessage(ConfigReader.no_permission);
+                event.setCancelled(true);
             }
+            return;
         }
     }
 
     public Boolean HasPermission(Player player, String Permission){
-        if(Permission == null){Permission = "" ;}
-        if(Permission.equals("cginvisibleitemframe.admin")){
+        if(Permission == null){ Permission = "" ;}
+        if(player.hasPermission("cginvisibleitemframe.admin") && Permission.equals("cginvisibleitemframe.admin")){
             return true;
         }
         if(ConfigReader.debugConsole_msg_default_op &&
