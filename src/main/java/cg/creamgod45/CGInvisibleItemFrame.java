@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,7 +32,7 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
         try {
             String json = "";
             URL url = new URL("https://raw.githubusercontent.com/creamgod45/CGInvisibleItemFrame/main/version.txt");
-            Scanner s = new Scanner(url.openStream());
+            Scanner s = new Scanner(url.openStream(),"UTF-8");
             while (s.hasNext()){
                 json = json + " " + s.next();
             }
@@ -44,9 +43,9 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
             if(!ConfigReader.version.equals(jsonObject.get("version").toString())) {
                 console.sendMessage(NMS.format("&f[&aNew&f] &eVersion : "+jsonObject.get("version").toString()));
                 for (int i=0; i<= jsonObject.getJSONArray("update-suggestion").length();i++){
-
-                    console.sendMessage(NMS.format("&f[&aNew&f] &eupdate suggestio : "+jsonObject.getJSONArray("update-suggestion").get(i).toString()));
+                    console.sendMessage(NMS.format("&f[&aNew&f] &eUpdate suggestion : "+jsonObject.getJSONArray("update-suggestion").get(i).toString()));
                 }
+                this.getLogger().info(NMS.format("&b============[END Update Checker]==============="));
             }else{
                 this.getLogger().info(NMS.format("&b You Are New Version!!"));
             }
