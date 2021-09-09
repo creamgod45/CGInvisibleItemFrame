@@ -1,29 +1,21 @@
 package cg.creamgod45;
 
 import com.plotsquared.core.PlotSquared;
-import com.sk89q.jchronic.utils.Time;
+
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.enginehub.piston.config.Config;
-import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.*;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import java.net.URL;
+import java.util.Scanner;
 
 public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExecutor {
     public static JavaPlugin instance;
@@ -36,11 +28,30 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
         return THIS;
     }
 
+    public void updatecheck(){
+        try {
+            URL url = new URL("https://raw.githubusercontent.com/creamgod45/CGInvisibleItemFrame/main/version.txt");
+            Scanner s = new Scanner(url.openStream());
+            console.sendMessage(s.next().toString());
+
+            String str = s.next();
+            JSONObject jsonObject = new JSONObject(str);
+            console.sendMessage("OBJECT : "+jsonObject.toString());
+            // read from your scanner
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
+        } catch (JSONException err) {
+            System.out.println("Exception : "+err.toString());
+        }
+    }
+
     @Override
     public void onEnable() {
         instance = this;
         CGInvisibleItemFrame.THIS = this;
 
+        updatecheck();
         fileconfig = this.getConfig();
         ConfigReader.load();
 

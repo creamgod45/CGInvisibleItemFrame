@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: net.kyori:adventure-platform-facet:4.0.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/net/kyori/adventure-platform-facet/4.0.0-SNAPSHOT/adventure-platform-facet-4.0.0-20210906.031645-50.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/kyori/adventure-platform-facet/4.0.0-SNAPSHOT/adventure-platform-facet-4.0.0-20210907.054009-52.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/net/kyori/adventure-platform-facet/4.0.0-SNAPSHOT/adventure-platform-facet-4.0.0-20210906.031645-50-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/kyori/adventure-platform-facet/4.0.0-SNAPSHOT/adventure-platform-facet-4.0.0-20210907.054009-52-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/net/kyori/adventure-platform-facet/4.0.0-SNAPSHOT/adventure-platform-facet-4.0.0-20210906.031645-50-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/kyori/adventure-platform-facet/4.0.0-SNAPSHOT/adventure-platform-facet-4.0.0-20210907.054009-52-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

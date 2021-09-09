@@ -146,7 +146,7 @@ public class ItemFrameListener implements Listener {
 
     public Boolean HasPermission(Player player, String Permission){
         if(Permission == null){ Permission = "" ;}
-        if(player.hasPermission("cginvisibleitemframe.admin") && Permission.equals("cginvisibleitemframe.admin")){
+        if(player.hasPermission(Permission) && Permission.equals("cginvisibleitemframe.admin")){
             return true;
         }
         if(ConfigReader.debugConsole_msg_default_op &&
