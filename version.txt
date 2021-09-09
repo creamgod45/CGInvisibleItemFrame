@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "130",
   "update-suggestion": [
     "[1.2.2] Regarding the permission of “cginvisibleitemframe.admin” in [1.2.2] checking the code, it was found that this permission was false and it will not check whether the player has permission, but the vulnerability has been fixed after the judgment formula has been repaired.",

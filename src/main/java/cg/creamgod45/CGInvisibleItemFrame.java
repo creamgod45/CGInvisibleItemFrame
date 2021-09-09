@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,19 +31,31 @@ public final class CGInvisibleItemFrame extends JavaPlugin implements CommandExe
 
     public void updatecheck(){
         try {
+            String json = "";
             URL url = new URL("https://raw.githubusercontent.com/creamgod45/CGInvisibleItemFrame/main/version.txt");
             Scanner s = new Scanner(url.openStream());
-            console.sendMessage(s.next().toString());
+            while (s.hasNext()){
+                json = json + " " + s.next();
+            }
+            console.sendMessage(json);
 
-            String str = s.next();
-            JSONObject jsonObject = new JSONObject(str);
-            console.sendMessage("OBJECT : "+jsonObject.toString());
+            JSONObject jsonObject = new JSONObject(json);
+            this.getLogger().info(NMS.format("&b==============[Update Checker]================"));
+            if(!ConfigReader.version.equals(jsonObject.get("version").toString())) {
+                console.sendMessage(NMS.format("&f[&aNew&f] &eVersion : "+jsonObject.get("version").toString()));
+                for (int i=0; i<= jsonObject.getJSONArray("update-suggestion").length();i++){
+
+                    console.sendMessage(NMS.format("&f[&aNew&f] &eupdate suggestio : "+jsonObject.getJSONArray("update-suggestion").get(i).toString()));
+                }
+            }else{
+                this.getLogger().info(NMS.format("&b You Are New Version!!"));
+            }
             // read from your scanner
         }
         catch(IOException ex) {
             ex.printStackTrace();
         } catch (JSONException err) {
-            System.out.println("Exception : "+err.toString());
+            System.out.println("Exception : "+ err.toString());
         }
     }
 
