@@ -85,17 +85,13 @@ public class ItemFrameListener implements Listener {
                     // else:
                     //
                     if(isInPlotWorld){
-                        CGInvisibleItemFrame.console.sendMessage("1");
                         if(HasPermission(player,"cginvisibleitemframe.admin")){
-                            CGInvisibleItemFrame.console.sendMessage("2");
                             item_frame(event);
                             return;
                         }else if(isOwner && HasPermission(player,"cginvisibleitemframe.use")){
-                            CGInvisibleItemFrame.console.sendMessage("3");
                             item_frame(event);
                             return;
                         }else{
-                            CGInvisibleItemFrame.console.sendMessage("4");
                             if (HasPermission(player, "cginvisibleitemframe.debugConsole")) {
                                 Bukkit.getServer().getConsoleSender().sendMessage(ConfigReader.debug_check_plot_inRoad.replace("*player_name*", player.getName()));
                             }
