@@ -1,15 +1,17 @@
 {
-  "version": "131",
+  "version": "132",
   "update-suggestion": {
     "custom": {
       "111": "[1.1.1] There are multiple errors in this version, please update immediately, otherwise it will cause irreversible consequences.",
       "122": "[1.2.2] Regarding the permission check code of “cginvisibleitemframe.admin” in this plug-in version, it is found that this permission is false, and the permission system does not check whether the player has permission, but the vulnerability of the judgment formula has been fixed in the latest version.",
-      "130": "[1.3.0] During the development process, add debugging information to the isInPlotWorld block. Forgetting to delete the debugging information may cause the frequency to be swiped in the background of the server in the PlotSquared world!!"
+      "130": "[1.3.0] During the development process, add debugging information to the isInPlotWorld block. Forgetting to delete the debugging information may cause the frequency to be swiped in the background of the server in the PlotSquared world!!",
+      "131": "[1.3.1] The original plugin author updated InvisibleItemFrame to support 1.16.5 update and updated API version."
     },
     "default": {
       "111": "[1.1.1] 此版本存在多個錯誤請立即更新，否則會造成不可逆的後果。",
       "122": "[1.2.2] 關於此插件版本中 “cginvisibleitemframe.admin” 的權限檢查代碼，發現這個權限是虛設，權限系統並不會檢查玩家是否有權限，但是已經修復了判斷公式的漏洞於最新版本。",
-      "130": "[1.3.0] 開發過程在 isInPlotWorld 區塊加入除錯訊息，忘記刪除除錯訊息可能導致在 PlotSquared 世界中，會於服務器端後台刷頻!!"
+      "130": "[1.3.0] 開發過程在 isInPlotWorld 區塊加入除錯訊息，忘記刪除除錯訊息可能導致在 PlotSquared 世界中，會於服務器端後台刷頻!!",
+      "131": "[1.3.1] 原插件作者更新 InvisibleItemFrame 對 1.16.5 更新支持，更新 API 版本"
     }
   }
 }
