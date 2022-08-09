@@ -1,0 +1,23 @@
+name: CGInvisibleItemFrame
+version: 1.3.2
+main: cg.creamgod45.CGInvisibleItemFrame
+api-version: 1.17
+prefix: CGInvisibleItemFrame
+loadbefore: [ PlotSquared, WorldEdit ]
+softdepend: [ PlotSquared, WorldEdit ]
+authors: [ creamgod45 ]
+description: Invisible Item Frame
+
+permissions:
+  cginvisibleitemframe.use:
+    description: Use permission of invisible item frame 隱形物品展示框使用權限
+    default: true
+  cginvisibleitemframe.debugPlayer:
+    description: Send debugging information to the player who operates 發送除錯資訊給予操作的玩家
+    default: op
+  cginvisibleitemframe.debugConsole:
+    description: Permission debugging information in console 控制台中的權限調試信息
+    default: op
+  cginvisibleitemframe.admin:
+    description: Have plugin control permissions 擁有插件控制權限
+    default: op
